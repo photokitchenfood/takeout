@@ -807,23 +807,19 @@
   #landing-banner.show { display: block; }
   #landing-banner-img {
     display: block;
-    margin: 0 auto;
     width: 100%;
     aspect-ratio: 2656 / 1214;
     object-fit: contain;
     border-radius: 10px;
     background: var(--tag-bg);
   }
-  /* Past this width, capping height at 100% width would make the banner
-     taller than is useful — switch to intrinsic sizing so it scales down
-     from its own aspect ratio instead of stretching full-width with
-     pillarboxing inside a fixed box. */
+  /* At medium screens and up, fill the full container width at a fixed
+     height instead — cropping via object-fit: cover, no pillarboxing. */
   @media (min-width: 1440px) {
     #landing-banner-img {
-      width: auto;
-      max-width: 100%;
-      height: auto;
-      max-height: 450px;
+      height: 450px;
+      aspect-ratio: unset;
+      object-fit: cover;
     }
   }
   .landing-wrap { padding: 0 0 40px; }
