@@ -140,7 +140,9 @@
     display: flex;
     align-items: center;
     gap: 10px;
+    cursor: pointer;
   }
+  .logo:hover { opacity: 0.82; }
 
 
 
@@ -804,12 +806,25 @@
   }
   #landing-banner.show { display: block; }
   #landing-banner-img {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-    object-position: center 40%;
-    border-radius: 10px;
     display: block;
+    margin: 0 auto;
+    width: 100%;
+    aspect-ratio: 2656 / 1214;
+    object-fit: contain;
+    border-radius: 10px;
+    background: var(--tag-bg);
+  }
+  /* Past this width, capping height at 100% width would make the banner
+     taller than is useful — switch to intrinsic sizing so it scales down
+     from its own aspect ratio instead of stretching full-width with
+     pillarboxing inside a fixed box. */
+  @media (min-width: 1440px) {
+    #landing-banner-img {
+      width: auto;
+      max-width: 100%;
+      height: auto;
+      max-height: 450px;
+    }
   }
   .landing-wrap { padding: 0 0 40px; }
   .landing-section-label {
@@ -2516,7 +2531,7 @@ document.getElementById('max-size').addEventListener('input', e => {
   render();
 });
 
-document.getElementById('reset').addEventListener('click', () => {
+function resetToLanding() {
   state = { search:'', category:'all', color:'', size:'all', qty:'all', minSize:null, maxSize:null, sort:'default', dimField:'diameter' };
   document.getElementById('search').value = '';
   document.getElementById('min-size').value = '';
@@ -2544,7 +2559,10 @@ document.getElementById('reset').addEventListener('click', () => {
     c.style.color = '';
   });
   render();
-});
+}
+
+document.getElementById('reset').addEventListener('click', resetToLanding);
+document.querySelector('.logo').addEventListener('click', resetToLanding);
 
 // ─────────────────────────────────────────────
 //  INIT
