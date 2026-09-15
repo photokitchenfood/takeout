@@ -4,14 +4,14 @@ const CATALOG_META = {
     "beige-brown": {
       "count": 31
     },
+    "clear": {
+      "count": 16
+    },
     "silver": {
       "count": 7
     },
     "white": {
       "count": 24
-    },
-    "clear": {
-      "count": 16
     }
   }
 };
